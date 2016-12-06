@@ -1,0 +1,152 @@
+
+<div class="row ">
+	<div class="col-md-7">
+		<div class="row">
+			<div class="tutor-img pull-left">
+				<img ng-src="data:image/jpg;base64,{{authUser.photo}}" onerror="this.remove()" />
+			</div>
+			<div class="pull-left main-info-tutor">
+				<h2>{{authUser.name}} {{authUser.surname}}</h2>
+				<dl>
+					<dt>Stars</dt>
+					<dd>
+						<p class="rate">
+							{{tutor.rating}} <i class="fa fa-star"></i>
+						</p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label>{{lang.address}}</label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon2"> <i class="fa fa-map-marker"></i>
+					</span> <input type="text" class="form-control" placeholder="Indirizzo" ng-model="tutor.location.name" readonly /> <span class="input-group-btn">
+						<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalPosition">Modifica</button>
+					</span>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label>{{lang.description}} </label>
+				<textarea class="form-control" ng-model="tutor.description" ng-blur="changeDescription()" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<label>{{lang.contacts}} </label>
+				<div class="input-group">
+  					<span class="input-group-addon" ><i class="fa fa-skype"></i></span>
+  					<input type="text" ng-blur="changeContact()" class="form-control" ng-model="tutor.contact.skype" placeholder="Skype contact" >
+  				</div>
+  			</div>
+			<div class="form-group">
+				<div class="input-group">
+  					<span class="input-group-addon" ><i class="fa fa-envelope-o"></i></span>
+  					<input type="email" ng-blur="changeContact()" class="form-control" ng-model="tutor.contact.email" placeholder="Email contact" >
+  				</div>
+  			</div>
+  			<div class="form-group">
+  			
+				<div class="input-group">
+  					<span class="input-group-addon" ><i class="fa fa-phone"></i></span>
+  					<input type="tel" ng-blur="changeContact()" class="form-control" ng-model="tutor.contact.telephone" placeholder="Phone contact" >
+  				</div>
+  			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 form-group">
+				<h5>
+					{{lang.hourlyRate}} <i class="fa fa-eur"></i>/<i class="fa fa-clock-o"></i>
+				</h5>
+
+			</div>
+			<div class="col-md-3">
+				<select ng-model="tutor.price" ng-options="price as price.value for price in prices" ng-change="changePrice()" class="form-control">
+				</select>
+			</div>
+		</div>
+
+
+
+	</div>
+	<div class="col-md-5">
+		<h4>{{lang.requests}}</h4>
+		<div ng-include="waitingsRequests"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4" >
+		<h4>{{lang.subjects}}</h4>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="(subject, lessons) in tutor.lessons">{{subject}}
+				<button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#modalUpdateSubject" data-subject="{{subject}}">
+					<i class="fa fa-pencil"></i>
+				</button> 
+				<span class="badge {{lesson.typeOfEducation.css}}" title="{{lesson.typeOfEducation.name}}" ng-repeat="lesson in lessons | orderBy : ' -typeOfEducation.id'"></span>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default btn-lg btn-block btn-list" data-toggle="modal" data-target="#modalAddSubject">
+					{{lang.add}} {{lang.subject}} <i class="fa fa-plus"></i>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4" >
+		<h4>Disponibilit&agrave;</h4>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat=" (dayValue, availabilities) in tutor.availabilities | orderBy:'dayValue'">{{availabilities.dayName}}
+				<button type="button" class="btn btn-default btn-xs pull-right" data-day="{{dayValue}}" data-toggle="modal" data-target="#modalUpdateDay">
+					<i class="fa fa-pencil"></i>
+				</button>
+				<span class="badge" title="Dalle ore {{av.from.value}} alle ore {{av.to.value}}" ng-repeat="av in availabilities.items | orderBy:'-from.value'">
+					{{av.from.value}} - {{av.to.value}}
+				</span>
+			</li>			
+		</ul>
+
+	</div>
+	<div class="col-md-4">
+		<h4>Feedback</h4>
+		<ul class="media-list list-group">
+			<li class="media list-group-item {{test}}" ng-repeat="feedback in feedbacks | orderBy:'-createdAt'">
+				<div class="media-left">
+					<div class="tutor-img">
+						<img class="media object" ng-src="data:image/jpg;base64,{{feedback.user.photo}}" onerror="this.remove()" />
+					</div>
+				</div>
+				<div class="media-body">
+					<h5 class="media-heading">
+						{{feedback.user.name}} {{feedback.user.surname}} <span class="badge"> {{feedback.rating}} <i class="fa fa-star"></i>
+						</span>
+					</h5>
+					<p>{{feedback.description}}</p>
+					<span class="time">{{feedback.displayTime}}</span>
+				</div>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default btn-lg btn-block btn-list" data-toggle="modal" data-target="#modalAllFeedback">
+					{{lang.viewOthersBtn}}
+				</button>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<div class="modal fade" id="modalPosition">
+	<div ng-include="modalPosition"></div>
+</div>
+<div class="modal fade" id="modalUpdateSubject">
+	<div ng-include="modalUpdateSubject"></div>
+</div>
+<div class="modal fade" id="modalAddSubject">
+	<div ng-include="modalAddSubject"></div>
+</div>
+<div class="modal fade" id="modalUpdateDay">
+	<div ng-include="modalUpdateDay"></div>
+</div>
+<div class="modal fade" id="modalAllFeedback">
+	<div ng-include="modalFeedback"></div>
+</div>
+

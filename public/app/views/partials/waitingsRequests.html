@@ -1,0 +1,26 @@
+		<ul class="media-list list-group" ng-controller="waitingRequestsController">
+			<li class="media list-group-item" ng-repeat="req in requests">
+				<div class="media-left">
+					<div class="tutor-img">
+						<img class="media object" ng-src="data:image/jpg;base64,{{req.user.photo}}" onerror="this.remove()">
+					</div>
+					</a>
+				</div>
+				<div class="media-body">
+					<h5 class="media-heading">
+						{{ req.user.surname}} {{ req.user.name}} 
+					</h5>
+					<p>{{req.description}}</p>
+					<div class="pull-right">
+						<button type="button" class="btn btn-success btn-sm" ng-click="changeStatus(req, 'Accepted')">
+							{{lang.accept}} <i class="fa fa-check"></i>
+						</button>
+					</div>
+					<div class="pull-right">
+						<button type="button" class="btn btn-danger btn-sm" ng-click="changeStatus(req, 'Rejected')">
+							{{lang.reject}} <i class="fa fa-close"></i>
+						</button>
+					</div>
+				</div>
+			</li>
+		</ul>

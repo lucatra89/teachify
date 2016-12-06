@@ -1,0 +1,34 @@
+<link href="{{contextPath}}/css/home.css" rel="stylesheet"><div class="row">
+<div class="wrap-slogan">
+        <div class="slogan">
+          <p>{{lang.homeTitle}}</p>
+        </div>
+        <div class="subslogan">
+          <p>{{lang.homeSubtitle}}</p>
+        </div>
+        <div class="home-searcher">
+
+          <div class="input-group">
+            <input type="text" id="location" class="form-control" placeholder="Search for...">
+
+            <span class="input-group-addon">
+              <select aria-label="..." class="form-control searcher" id="subject">
+                <option value="0">{{lang.subject}}</option>
+                <option value="{{subject.id}}" ng-repeat="subject in subjects">{{subject.name}}</option>
+              </select>
+            </span>
+
+            <span class="input-group-addon">
+              <select aria-label="..." class="form-control searcher" id="typeOfEducation">
+                <option value="0">{{lang.typeOfEducation}}</option>
+                <option value="{{type.id}}" ng-repeat="type in typesOfEducation">{{type.name}}</option>
+              </select>
+            </span>
+
+            <span class="input-group-btn">
+              <button class="btn btn-danger" type="button" ng-click="goToSearch()">{{lang.search}} <i class="fa fa-search"></i></button>
+            </span>
+          </div>
+
+        </div>
+      </div>

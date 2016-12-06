@@ -1,0 +1,72 @@
+#map {
+  height: 100%;
+}
+.wrap-searcher {
+  height: 100%;
+}
+.searcher-row {
+  height: 50px;
+}
+.searcher-row .input-group {
+  z-index: 99;
+}
+.search-result {
+  padding-left: 0;
+  height: 100%;
+}
+.filter.input-group {
+  float: right;
+}
+.search-list {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  overflow: auto;
+  height: 100%;
+  padding-top: 100px;
+}
+.search-list-item {
+  height: 150px;
+  border: 1px solid #dddddd;
+  background-color: white;
+}
+.search-list-item > div {
+  height: 100%;
+}
+.tutor-img {
+  height: 120px;
+  width: 120px;
+}
+.tutor-service {
+  width: 120px;
+  height: 30px;
+  text-align: center;
+}
+.tutor-service i {
+  margin: 5px;
+  font-size: 1.3em;
+}
+.btn-wrapper {
+  width: 100%;
+  height: 50%;
+  padding: 5px;
+  text-align: center;
+}
+.btn-wrapper:first-child .btn {
+  position: relative;
+  top: 30px;
+}
+.btn-wrapper .btn {
+  width: 130px;
+}
+.btn-wrapper .btn i {
+  float: right;
+}
+.btn-wrapper .rate {
+  font-size: 1.3em;
+}
+.btn-wrapper dl {
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=cerca.css.map */

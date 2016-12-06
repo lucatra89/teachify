@@ -1,0 +1,101 @@
+@import "variables.less";
+@import "utils.less";
+
+
+header{
+	height: 100px;
+	padding: (@header-height - @nav-item-height) @header-paddingLR;
+
+	.row{
+		border-bottom: 1px solid @light-gray;
+	}
+
+	.tutor-img{
+		width: @tutor-image-size-small;
+		height: @tutor-image-size-small;
+	}
+
+	.btn-group{
+		position: absolute;
+		top: 55px;
+		right: 10px;
+
+		.btn{
+			border: none;
+		}
+
+		.dropdown-menu{
+			right: 0;
+			left: auto;
+		}
+	}
+}
+
+.nav-teachify{
+	height: @nav-item-height;
+}
+.nav-teachify ul{
+	height: @nav-item-height;
+	padding: (@nav-item-height - @nav-list-item-height);
+	.flex();
+}
+
+.nav-teachify > a:hover{
+	text-decoration: none;
+}
+.nav-teachify li{
+	height: @nav-list-item-height;
+}
+
+.nav-teachify .btn{
+  position: relative;
+  top: 8px;
+
+}
+
+.nav-teachify li a{
+	font-family: @main-font-family;
+	font-weight: lighter;
+	color: @dark-gray;
+}
+
+
+.brand-teachify{
+	height: @nav-item-height;
+	.flex();
+}
+
+.brand-teachify .fa{
+	font-size: 36px;
+	color: @light-red;
+	opacity: inherit;
+}
+
+.brand-teachify h1{
+	opacity: inherit;
+	color: @dark-gray;
+}
+
+.title-teachify{
+	position: absolute;
+	height: @nav-item-height;
+	top: 0;
+	left: @logo-width;
+	color: @dark-gray;
+}
+
+.btn-tutor-mode:after{
+	content: "OFF";
+}
+
+.btn-tutor-mode.active:after{
+	content: "ON";
+}
+
+.btn-tutor-mode, .btn-dashboard{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+
+

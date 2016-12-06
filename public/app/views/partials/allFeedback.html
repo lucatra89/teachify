@@ -1,0 +1,34 @@
+<div class="modal-dialog" ng-controller="allFeedbackController">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" >Feedback</h4>
+		</div>
+		<div class="modal-body modal-overflow-auto" >
+		<ul class="media-list list-group">
+			<li class="media list-group-item " ng-repeat="feedback in feedbacks | orderBy:'-createdAt'">
+				<div class="media-left">
+					<div class="tutor-img">
+						<img class="media object" ng-src="data:image/jpg;base64,{{feedback.user.photo}}" onerror="this.remove()" />
+					</div>
+				</div>
+				<div class="media-body " >
+					<h5 class="media-heading">
+						{{feedback.user.name}} {{feedback.user.surname}} <span class="badge"> {{feedback.rating}} <i class="fa fa-star"></i>
+						</span>
+					</h5>
+					<p>{{feedback.description}}</p>
+					<span class="time">{{feedback.displayTime}}</span>
+				</div>
+			</li>
+		</ul>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">{{lang.close}}</button>
+			<button type="button" class="btn btn-default " ng-click="loadNexts()">{{lang.viewOthersBtn}}</button>
+			
+		</div>
+	</div>
+</div>

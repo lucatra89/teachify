@@ -1,0 +1,125 @@
+
+<div class="row ">
+	<div class="col-md-7">
+	   	<div class="row">
+    		<a ng-click="goBack()" class="btn-back">
+    			<i class="fa fa-arrow-circle-left"></i>
+    		</a>
+    	</div>
+	
+		<div class="row">
+			<div class="tutor-img pull-left">
+                <img id="profile" ng-src="data:image/jpg;base64,{{tutor.photo}}" onerror="this.remove()"/>
+			</div>
+			<div class="pull-left main-info-tutor">
+				<h2>{{tutor.name}} {{tutor.surname}}</h2>
+				<dl>
+					<dt>Stars</dt>
+					<dd>
+						<p class="rate">
+							{{tutor.rating}} <i class="fa fa-star"></i>
+						</p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div  class="row main-task" ng-if="auth">
+			
+			<div class="col-md-5" ng-switch on="statusReq.val">
+				
+				<button type="button" data-toggle="modal" data-target="#modalRequest" class="btn btn-primary btn-lg btn-block" ng-switch-when="Unrequested">
+					{{lang.requestContact}}
+				</button>
+				<div class="alert alert-success" role="alert" ng-switch-default >
+					{{lang.requestSended}} <i class="fa fa-check"></i>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row">
+			<ul class="list-group">
+				<li class="list-group-item"><i class="fa fa-eur"></i>/<i class="fa fa-clock-o"></i> Costo orario della lezione di {{tutor.price.value}}€</li>
+				<li class="list-group-item"><i class="fa fa-map-marker"></i> {{tutor.location.name}}</li>
+				<li class="list-group-item"><i class="fa fa-info-circle"></i> {{tutor.description}}</li>
+				<li ng-if="tutor.contact.email && statusReq.val == 'Accepted'" class="list-group-item">
+					<i class="fa fa-envelope-o"></i> {{tutor.contact.email}}
+				</li>
+				<li ng-if="tutor.contact.skype && statusReq.val == 'Accepted'"  class="list-group-item">
+					<i class="fa fa-skype"></i> {{tutor.contact.skype}}
+				</li>
+				<li ng-if="tutor.contact.telephone && statusReq.val == 'Accepted'"  class="list-group-item ">
+					<i class="fa fa-phone"></i> {{tutor.contact.telephone}}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div id="map" class="map-tutor-profile"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<h4>{{lang.subjects}}</h4>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="(subject, lessons) in tutor.lessons">
+				{{subject}}
+				<span data-toggle="tooltip" data-placement="right"  class="badge {{lesson.typeOfEducation.css}}" title="{{lesson.typeOfEducation.name}}" ng-repeat="lesson in lessons | orderBy : ' -typeOfEducation.id'"></span>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h4>Disponibilit&agrave;</h4>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat=" (dayValue, availabilities) in tutor.availabilities | orderBy:'dayValue'">{{availabilities.dayName}}
+				<span class="badge" title="Dalle ore {{av.from.value}} alle ore {{av.to.value}}" ng-repeat="av in availabilities.items | orderBy:'-from.value'">
+					{{av.from.value}} - {{av.to.value}}
+				</span>
+			</li>			
+
+		</ul>
+
+	</div>
+	<div class="col-md-4">
+		<h4>Feedback</h4>
+		<ul class="media-list list-group">
+			<li class="media list-group-item {{test}}" ng-repeat="feedback in feedbacks | orderBy:'-createdAt'">
+				<div class="media-left">
+					<div class="tutor-img">
+						<img class="media object" ng-src="data:image/jpg;base64,{{feedback.user.photo}}" onerror="this.remove()"/>
+					</div>
+				</div>
+				<div class="media-body">
+					<h5 class="media-heading">
+						{{feedback.user.name}} {{feedback.user.surname}} <span class="badge"> {{feedback.rating}} <i class="fa fa-star"></i>
+						</span>
+					</h5>
+					<p>{{feedback.description}}</p>
+					<span class="time">{{feedback.displayTime}}</span>
+				</div>
+			</li>
+			<li ng-if="statusReq.val == 'Accepted'">
+				<button type="button" class="btn btn-default btn-lg btn-block btn-list" data-toggle="modal" data-target="#modalFeedback">
+					{{lang.addFeedbackBtn}}<i class="fa fa-comment-o"></i>
+				</button>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default btn-lg btn-block btn-list" data-toggle="modal" data-target="#modalAllFeedback">
+					{{lang.viewOthersBtn}}
+				</button>
+			</li>
+		</ul>
+
+
+	</div>
+
+</div>
+<!--        Modals -->
+<div class="modal fade" id="modalFeedback" tabindex="-1" role="dialog" aria-hidden="true">
+	<div ng-include="modalFeedback"></div>
+</div>
+<div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-hidden="true">
+	<div ng-include="modalRequest"></div>
+</div>
+<div class="modal fade" id="modalAllFeedback">
+	<div ng-include="modalAllFeedback"></div>
+</div>

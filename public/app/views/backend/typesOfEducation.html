@@ -1,0 +1,40 @@
+        <div class="col-md-9">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+              	<th ng-repeat="(prop , value) in typesofeducation[0]" ng-if="prop != 'toUpdate'">{{prop}}</th>
+              	<th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="t in typesofeducation | orderBy:'id'">
+            	<td>{{t.id}}</td>
+            	<td>
+            		<span ng-if="!t.toUpdate">{{t.name}}</span>
+            		<input class="form-control" ng-if="t.toUpdate" type="text" name="name" ng-model="t.name"/>
+            	</td>
+            	<td>
+            		<p ng-if="!t.toUpdate">
+            			<a ng-click="update(t)">Update</a>
+            		</p>
+            		<p ng-if="t.toUpdate" >
+            			<a ng-click="save(t)">Save</a>
+            		</p>
+            		<p>
+            			<a ng-click="destroy(t)">Delete</a>
+            		</p>
+            	</td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="row">
+          	<form class="form-inline">
+			  <div class="form-group">
+			    <label for="name">Name</label>
+			    <input type="text" ng-model="typeofeducation.name" class="form-control"  placeholder="Type of Education Name">
+			  </div>
+			  <button type="submit" class="btn btn-default" ng-click="create(typeofeducation)">Add type of education</button>
+			</form>
+          </div>
+
+        </div>

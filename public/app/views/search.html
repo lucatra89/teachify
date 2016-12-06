@@ -1,0 +1,58 @@
+      <div class="wrap-searcher">
+        <div class="search-result col-md-6">
+          <div class="row searcher-row">
+            <div class="input-group">
+              <input ng-model="location" type="text" class="form-control" id="location" placeholder="Search for...">
+              <span class="input-group-addon">
+              <select aria-label="..." class="form-control searcher" id="subject">
+                <option value="0">{{lang.subject}}</option>
+                <option value="{{subject.id}}" ng-repeat="subject in subjects">{{subject.name}}</option>
+              </select>
+              </span>
+
+              <span class="input-group-addon">
+              <select aria-label="..." class="form-control searcher" id="typeOfEducation">
+                <option value="0">{{lang.typeOfEducation}}</option>
+                <option value="{{type.id}}" ng-repeat="type in typesOfEducation">{{type.name}}</option>
+              </select>
+              </span>
+            </div>
+          </div>
+          <div class="row search-list">
+              <div class="search-list-item col-md-12 row" ng-repeat="tutor in tutors | orderBy : 'distance'">
+                <div class="col-md-3 ">
+                  <div class="tutor-img">
+						<img  ng-src="data:image/jpg;base64,{{tutor.photo}}" onerror="this.remove()"/>
+					</div>
+                </div>
+                <div class="col-md-6">
+                  <h3>{{tutor.name}} {{tutor.surname}}</h3>
+                  <dl>
+                    <dt>{{lang.hourlyRate}}</dt>
+                    <dd><i class="fa fa-eur"></i>/<i class="fa fa-clock-o"></i> {{tutor.price.value}}</dd>
+                    <dt>{{lang.distance}}</dt>
+                    <dd><i class="fa fa-map-marker"></i> {{tutor.distance}} Km</dd>
+                  </dl>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="btn-wrapper">
+                    <dl>
+                      <dt>Feedback</dt>
+                      <dd><p class="rate">{{tutor.rating}} <i class="fa fa-star"></i></p></dd>
+                    </dl>                  
+                  </div>
+                  <div class="btn-wrapper">
+                      <button type="button" class="btn btn-info" ng-click="goToTutor(tutor.id)">
+                        {{lang.profile}} <i class="fa fa-user"></i>
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row col-md-12 search-list-item-btn">
+              	<button type="button" ng-click="next()" class="btn btn-default btn-lg btn-block">{{lang.viewOthersBtn}}</button>
+              </div>
+          </div>
+        </div>
+        <div id="map" class="col-md-6"></div>
+      </div>

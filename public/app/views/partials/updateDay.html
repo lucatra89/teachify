@@ -1,0 +1,41 @@
+<div class="modal-dialog" ng-controller="updateDayController">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">{{lang.updateAvailability}}</h4>
+		</div>
+		<div class="modal-body">
+			<ul class="list-group ">
+				<li class="list-group-item ng-binding ng-scope" ng-repeat="availability in availabilities | orderBy:'from.value'">
+					{{lang.from}} {{availability.from.value}} {{lang.to}} {{availability.to.value}}
+					<button type="button" class="btn btn-default btn-xs pull-right" ng-click="deleteAvailability(availability)">
+						<i class="fa fa-trash-o"></i>
+					</button>
+				</li>
+			</ul>
+			<div class="row mg-top-20">
+				<div class=" col-md-6 form-group">
+					<label>{{lang.from}}</label>
+					<select name="from" class="form-control">
+						<option value="{{hour.id}}" ng-repeat="hour in hours | orderBy:'value'">{{hour.value}}</option>
+					</select>
+				</div>
+				<div class=" col-md-6 form-group">
+					<label>{{lang.to}}</label>
+					<select name="to" class="form-control">
+						<option value="{{hour.id}}" ng-repeat="hour in hours | orderBy:'value'">{{hour.value}}</option>
+					</select>
+				</div>
+				<div class="col-md-12 form-group">
+  					<button type="button" class="btn btn-success btn-sm" ng-click="addAvailability()">{{lang.add}}</button>
+				</div>			
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">{{lang.close}}</button>
+		</div>
+	</div>
+</div>

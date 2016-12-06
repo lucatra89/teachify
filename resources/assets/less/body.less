@@ -1,0 +1,229 @@
+@import "variables.less";
+
+body{
+	background-color: #f9f9f9;
+}
+
+a{	
+	&:hover{
+		cursor: pointer;
+		text-decoration: none;
+	}
+	&:focus{
+		text-decoration: none;
+		outline: none;
+	}
+}
+
+
+.content{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 20px @content-paddingLR 0 @content-paddingLR;
+}
+select.form-control.searcher{
+  	width: 130px;
+  	height: 20px;
+	font-size: 11px;
+}
+
+label.searcher{
+	font-family: @main-font-family;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.tutor-img{
+	overflow: hidden;
+	border-radius: 100%;
+	background: url("./img/tutor-default.jpg");
+	background-size: 100%;
+	background-position: center; 
+
+	img{
+		height: 100%;
+	}
+}
+
+.badge.primary:empty ,.badge.high:empty,.badge.uni:empty,.badge.extra:empty , .badge.secondary:empty,
+.badge.primary-big:empty ,.badge.high-big:empty,.badge.uni-big:empty,.badge.extra-big:empty , .badge.secondary-big:empty{
+	display: block;
+}
+
+.badge.primary{
+	background-color: @primary-color; 
+
+	&:after{
+		content: "E";
+	}
+
+}
+
+
+.primary-big{
+	background-color: @primary-color; 
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+	&:after{
+		content:'Elementari';
+	}
+}
+
+
+
+.badge.secondary{
+	background-color: @secondary-color; 
+
+	&:after{
+		content: "M";
+	}
+}
+
+.secondary-big{
+	background-color: @secondary-color;
+	  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+
+	&:after{
+		content:'Medie';
+	}
+}
+
+
+.badge.high{
+	background-color: @high-color;
+	&:after{
+		content: "S";
+	}
+}
+
+.high-big{
+	background-color: @high-color;
+	  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+
+	&:after{
+		content:'Superiori';
+	}
+}
+
+
+
+
+.badge.uni{
+	background-color:  @uni-color;
+	&:after{
+		content: "U";
+	}
+}
+
+.uni-big{
+	background-color:  @uni-color;
+
+	padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+
+	&:after{
+		content:'Universit\00e0';
+	}
+}
+
+
+.badge.extra{
+	background-color: @extra-color;
+	&:after{
+		content: "X";
+	}
+
+}
+
+.extra-big{
+	background-color: @extra-color;
+
+		  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+
+	&:after{
+		content:'Extra';
+	}
+}
+
+.form-styled{
+
+	margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 50px;
+	padding: 0 40px;
+}
+
+.btn-list{
+
+	font-size: 1em;
+	border-radius: 0 0 9px 9px;
+
+	i{
+		position: relative;
+		left: 10px;
+	}
+}
+
+.list-group li{
+	list-style: none;
+}
+
+.list-group-item .btn-xs.pull-right{
+	margin-left: 5px
+}
+
+
+.media-body .btn-sm{
+	margin: 5px;
+
+}
+
+.badge + .badge{
+	margin-right: 5px;
+}
+
+.time{
+	font-size: 0.8em;
+	color: #a1a1a1;
+}
+
